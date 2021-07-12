@@ -1,6 +1,8 @@
 import json
+import docker
+docker_client = docker.from_env()
 
-from app import docker_client, BASEDIR
+from . import BASEDIR
 
 def create_user(name, password):
 
@@ -20,6 +22,7 @@ def create_user(name, password):
         )
 
     update_user_amount()
+    return CURRENT_PORT
 
 def get_user_amount():
 
