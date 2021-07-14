@@ -7,8 +7,8 @@ def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__)
 
-    from . import route, user
-    app.register_blueprint(route.bp)
+    from app.route import root, user
+    app.register_blueprint(root.root)
     app.register_blueprint(user.user)
 
     return app
