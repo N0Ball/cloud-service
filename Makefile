@@ -15,6 +15,7 @@ build:
 clean:
 	docker compose down &&\
 	docker ps -a -q -f "label=cloud-service" | xargs docker rm -f && \
+	docker images --format "{{.Repository}}" | grep ".-cloud-img" | xargs docker rmi -f && \
 	docker volume ls -q | grep ".*-cloud-volume" | xargs docker volume rm -f && \
 	rm -rf $(CLOUD_SERVICE_DIR) && \
 	docker image prune -f
