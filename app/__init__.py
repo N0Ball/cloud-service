@@ -1,5 +1,6 @@
 import os
 BASEDIR = os.getcwd()
+APP_DIR = os.getenv("CLOUD_SERVICE_DIR", "/tmp/cloud_service")
 
 from flask import Flask
 

@@ -10,6 +10,7 @@ services:
         volumes: 
             - ./status.conf:/app/status.conf
             - /var/run/docker.sock:/var/run/docker.sock:ro
+            - ${CLOUD_SERVICE_DIR}:${CLOUD_SERVICE_DIR}
 
 networks:
     default:
