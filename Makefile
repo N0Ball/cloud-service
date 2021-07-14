@@ -1,3 +1,7 @@
+#!make
+include .env
+export $(shell sed 's/=.*//' .env)
+
 restart:
 	docker compose down &&\
 	make run
@@ -7,7 +11,6 @@ run:
 	docker compose up -d
 
 build: 
-	export CLOUD_SERVICE_DIR=/tmp/cloud_service &&\
 	mkdir -p $(CLOUD_SERVICE_DIR) &&\
 	docker build ./app/templates/base -t cloud-base &&\
 	echo "{\"Users\": 1}" > status.conf

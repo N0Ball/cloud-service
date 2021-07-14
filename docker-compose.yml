@@ -2,8 +2,8 @@ version: '3.9'
 
 services: 
 
-    flask-app:
-        container_name: cloud-app
+    app:
+        container_name: cloud-service-app
         build: ./
         ports:
             - 8080:80
@@ -11,6 +11,31 @@ services:
             - ./status.conf:/app/status.conf
             - /var/run/docker.sock:/var/run/docker.sock:ro
             - ${CLOUD_SERVICE_DIR}:${CLOUD_SERVICE_DIR}
+
+    db:
+        container_name: cloud-service-db
+        image: 'jc21/mariadb-aria:latest'
+        restart: unless-stopped
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASS}
+            MYSQL_DATABASE: ${MYSQL_DB}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASS}
+        volumes:
+            - ./data/mysql:/var/lib/mysql
+
+    php-my-admin:
+        container_name: cloud-service-phpmyadmin
+        image: phpmyadmin
+        ports: 
+            - 3088:80
+        restart: always
+        environment:
+            PMA_HOST: db
+        depends_on: 
+            - db
+        links: 
+            - db:db
 
 networks:
     default:

@@ -6,3 +6,9 @@
 
 # python
 __pycache__/
+
+# datas
+data/
+
+# environment 
+.env

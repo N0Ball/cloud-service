@@ -14,6 +14,7 @@ def create_user(name, password):
         os.makedirs(f"{APP_DIR}/{name}")
     except FileExistsError:
         print("user exist")
+        return -1
 
     docker_client.images.build(path=f"{BASEDIR}/app/templates",
         tag=f"{name.lower()}-cloud-img",
