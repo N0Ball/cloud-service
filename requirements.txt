@@ -5,6 +5,7 @@ click==8.0.1
 docker==5.0.0
 Flask==2.0.1
 Flask-SQLAlchemy==2.5.1
+Flask-Testing==0.8.1
 greenlet==1.1.0
 h11==0.12.0
 idna==3.2

@@ -2,6 +2,13 @@
 include .env
 export $(shell sed 's/=.*//' .env)
 
+test:
+	flask test
+
+dev:
+	export MODE=DEVELOPMENT
+	flask run --reload
+
 restart:
 	docker compose down &&\
 	make run
